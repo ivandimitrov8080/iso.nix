@@ -1,4 +1,4 @@
-{ src, inputs }:
+{ inputs }:
 {
   pkgs,
   lib,
@@ -16,7 +16,7 @@
     useUserPackages = true;
     useGlobalPkgs = true;
     users.iso = lib.mkMerge [
-      (import (src + "/modules/home-manager") { inherit inputs pkgs; })
+      { imports = [ inputs.configuration.homeManagerModules.default ]; }
       {
         home = {
           username = "iso";
