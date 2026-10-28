@@ -15,8 +15,7 @@
   outputs =
     inputs@{ nixpkgs, ... }:
     {
-      nixosConfigurations.iso = nixpkgs.lib.nixosSystem {
-        # meta.host.* and meta.minimal.* read nixpkgs/emacs-overlay from here.
+      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
           inputs.configuration.nixosModules.default
