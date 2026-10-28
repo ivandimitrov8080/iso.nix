@@ -223,7 +223,6 @@
         "configuration": "configuration",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "neomacs": "neomacs",
         "nixpkgs": "nixpkgs_3"
       }
     },

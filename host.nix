@@ -14,11 +14,23 @@
   ];
 
   meta = {
-    host.overlays = [ inputs.emacs-overlay.overlays.default ];
-    minimal.enable = true;
+    host = {
+      stateVersion = "26.05";
+    };
+    minimal = {
+      enable = true;
+      workstation = false;
+    };
   };
 
-  services.openssh.settings.PermitRootLogin = "yes";
+  # iso-image.nix does not enable sshd by itself, so do it explicitly.
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = lib.mkForce true;
+    };
+  };
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
 
   home-manager = {
@@ -30,6 +42,7 @@
       home = {
         username = "iso";
         homeDirectory = "/home/iso";
+        stateVersion = "26.05";
       };
     };
   };
@@ -49,6 +62,7 @@
       "mlocate"
       "realtime"
       "render"
+      "ssh"
       "video"
       "wheel"
     ];
