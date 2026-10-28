@@ -14,14 +14,13 @@
   };
   outputs =
     inputs@{ nixpkgs, ... }:
-    let
-      modules = import ./modules.nix { inherit inputs; };
-    in
     {
       nixosConfigurations.iso = nixpkgs.lib.nixosSystem {
+        # meta.host.* and meta.minimal.* read nixpkgs/emacs-overlay from here.
+        specialArgs = { inherit inputs; };
         modules = [
-          modules.default
-          modules.minimal
+          inputs.configuration.nixosModules.default
+          inputs.home-manager.nixosModules.default
           (import ./host.nix { inherit inputs; })
         ];
       };
