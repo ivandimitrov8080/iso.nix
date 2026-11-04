@@ -1,6 +1,3 @@
-# Everything host specific about the installer image. The shared baseline
-# (packages, fonts, kmonad, nix-ld, meta.* defaults) lives in
-# configuration.nix's meta.minimal module.
 { inputs }:
 {
   pkgs,
@@ -23,7 +20,6 @@
     };
   };
 
-  # iso-image.nix does not enable sshd by itself, so do it explicitly.
   services.openssh = {
     enable = true;
     settings = {

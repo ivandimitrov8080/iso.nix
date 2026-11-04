@@ -41,9 +41,5 @@
     in
     {
       nixosConfigurations.default = host;
-
-      checks.${system}.default = nixpkgs.legacyPackages.${system}.runCommand "eval-iso" { } ''
-        echo ${builtins.unsafeDiscardStringContext host.config.system.build.toplevel.drvPath} > $out
-      '';
     };
 }
